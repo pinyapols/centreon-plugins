@@ -46,10 +46,10 @@ while getopts "h :u: :a: :o: :n: :f: w: c:" opt; do
       func="$OPTARG"
       case $func in
         ALL)
-           PYCMD=meraki_ids_allowed_event_v2.py
+           PYCMD=meraki_ids_allowed_event.py
            ;;
         BLO)
-           PYCMD='meraki_ids_event_count_v2.py -p message -t 30 -c'
+           PYCMD='meraki_ids_event_count.py -p message -t 30 -c'
            ;;
         *)
            echo "Invalid function"
