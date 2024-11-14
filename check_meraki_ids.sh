@@ -9,6 +9,7 @@ function usage()
   echo "This plugin interfaces with Meraki API (v2)"
   echo "Usage: $0 -[hfwc]"
   echo "-h show this message"
+  echo "-u meraki api hostname"
   echo "-a meraki api key"
   echo "-o meraki organization id"
   echo "-n meraki network id"
@@ -20,11 +21,15 @@ function usage()
   echo "-c [CRITICAL]"
 }
 
-while getopts "h :a: :o: :n: :f: w: c:" opt; do
+while getopts "h :u: :a: :o: :n: :f: w: c:" opt; do
   case $opt in
     h)
       usage
       exit 0;;
+    u)
+     API_HOSTNAME="$OPTARG"
+     export API_HOSTNAME
+     ;;
     a)
      API_KEY="$OPTARG"
      export API_KEY
@@ -41,10 +46,10 @@ while getopts "h :a: :o: :n: :f: w: c:" opt; do
       func="$OPTARG"
       case $func in
         ALL)
-           PYCMD=meraki_ids_allowed_event.py
+           PYCMD=meraki_ids_allowed_event_v2.py
            ;;
         BLO)
-           PYCMD='meraki_ids_event_count.py -p message -t 30 -c'
+           PYCMD='meraki_ids_event_count_v2.py -p message -t 30 -c'
            ;;
         *)
            echo "Invalid function"
