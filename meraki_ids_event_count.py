@@ -25,7 +25,7 @@ timespan=int(opts.t) * 60
 # warningThreshold = int(opts.w)
 criticalThreshold = int(opts.c)
 
-apiV1 = 'https://api.meraki.com/api/v1/'
+apiV1 = 'https://' + os.environ['API_HOSTNAME'] + '/api/v1/'
 url =  apiV1+'networks/' + os.environ['NETWORK'] + '/appliance/security/events?timespan='+str(timespan)
 headers = {
     "X-Cisco-Meraki-API-Key": os.environ['API_KEY']
