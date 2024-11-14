@@ -18,7 +18,7 @@ opts = parser.parse_args()
 
 #30 minutes ago, timespan is in seconds so 30 * 60
 timespan=int(opts.t) * 60
-apiV1 = 'https://api.meraki.com/api/v1/'
+apiV1 = 'https://' + os.environ['API_HOSTNAME'] + '/api/v1/'
 url =  apiV1+'networks/' + os.environ['NETWORK'] + '/appliance/security/events?timespan='+str(timespan)
 headers = {
     "X-Cisco-Meraki-API-Key": os.environ['API_KEY']
